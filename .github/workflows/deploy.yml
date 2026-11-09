@@ -25,7 +25,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.PAT_GHCR || secrets.GITHUB_TOKEN }}
 
       - name: Construire et publier l'image
         uses: docker/build-push-action@v6
@@ -63,8 +63,8 @@ jobs:
 
       - name: Test de santé (Healthcheck)
         run: |
-          echo "Vérification locale sur la VM via SSH..."
+          echo "Vérification de l'application sur la VM..."
           ssh -i ~/.ssh/id_deploy "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" "
             sleep 3 && curl -f -s http://localhost:80/health || exit 1
           "
-          echo "Health check réussi !"
+          echo "Health check réussi avec succès !"
