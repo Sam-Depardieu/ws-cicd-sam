@@ -5,8 +5,8 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-# Message affiché sur la page d'accueil : à modifier pendant le workshop
-MESSAGE = "Bonjour depuis mon pipeline CI/CD !"
+# Message affiché sur la page d'accueil : à modifier pendant le workshop (Sam)
+MESSAGE = "Bonjour depuis mon pipeline CI/CD ! (Sam)"
 # Version injectée au build (SHA du commit en CI, "dev" par défaut)
 VERSION = os.getenv("APP_VERSION", "dev")
 
@@ -14,9 +14,9 @@ VERSION = os.getenv("APP_VERSION", "dev")
 @app.route("/")
 def index():
     return (
-        f"<h1>{MESSAGE}</h1>"
-        f"<p>Version : <code>{VERSION[:7]}</code></p>"
-        f"<p>Conteneur : <code>{socket.gethostname()}</code></p>"
+        f"<h1>{MESSAGE}</h1>\n"
+        f"<p>Version : <code>{VERSION[:7]}</code></p>\n"
+        f"<p>Conteneur : <code>{socket.gethostname()}</code></p>\n"
     )
 
 
